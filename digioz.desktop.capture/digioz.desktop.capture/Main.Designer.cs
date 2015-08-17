@@ -1,11 +1,14 @@
-﻿namespace digioz.desktop.capture
+﻿using System.ComponentModel;
+using System.Windows.Forms;
+
+namespace digioz.desktop.capture
 {
-    partial class frmMain
+    partial class Main
     {
         /// <summary>
         /// Required designer variable.
         /// </summary>
-        private System.ComponentModel.IContainer components = null;
+        private IContainer components = null;
 
         /// <summary>
         /// Clean up any resources being used.
@@ -56,7 +59,7 @@
 
         #endregion
 
-        private System.Windows.Forms.Button btnCapture;
+        private Button btnCapture;
     }
 }
 

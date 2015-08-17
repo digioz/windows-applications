@@ -1,19 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Imaging;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace digioz.desktop.capture
 {
-    public partial class frmMain : Form
+    public partial class Main : Form
     {
         /// <summary>
         /// Capture a Screenshot of desktop
@@ -39,7 +33,7 @@ namespace digioz.desktop.capture
             //foreach (Screen screen in Screen.AllScreens)
             //{
                 Screen screen = Screen.FromControl(this);
-                screenshot = new Bitmap(screen.Bounds.Width, screen.Bounds.Height, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
+                screenshot = new Bitmap(screen.Bounds.Width, screen.Bounds.Height, PixelFormat.Format32bppArgb);
                 // Create a graphics object from the bitmap
                 Graphics g = Graphics.FromImage(screenshot);
                 // Take the screenshot from the upper left corner to the right bottom corner
@@ -85,7 +79,7 @@ namespace digioz.desktop.capture
 
             try
             {
-                Process proc = new System.Diagnostics.Process();
+                Process proc = new Process();
                 proc.EnableRaisingEvents = false;
                 proc.StartInfo.FileName = fileName;
                 proc.Start();
@@ -116,7 +110,7 @@ namespace digioz.desktop.capture
                         displayType = "Primary Display";
                     }
 
-                    displays.Add(i.ToString() + " - " + displayType);
+                    displays.Add(i + " - " + displayType);
 
                     //displays.Add(screen.Primary.ToString() + " - " + screen.DeviceName + " - " + screen.GetType().ToString());
                 }
@@ -132,7 +126,7 @@ namespace digioz.desktop.capture
         /// <summary>
         /// Form Constructor
         /// </summary>
-        public frmMain()
+        public Main()
         {
             InitializeComponent();
         }
@@ -150,15 +144,15 @@ namespace digioz.desktop.capture
         private void btnCapture_Click(object sender, EventArgs e)
         {
             Guid guid = Guid.NewGuid();
-            string fileName = guid.ToString() + ".png";
+            string fileName = guid + ".png";
 
             // minimize current form
-            this.WindowState = FormWindowState.Minimized;
+            WindowState = FormWindowState.Minimized;
 
             SaveImage(CaptureScreen(), fileName);
 
             // Show the current form again
-            this.WindowState = FormWindowState.Normal;
+            WindowState = FormWindowState.Normal;
 
             ViewFile(fileName);
 
