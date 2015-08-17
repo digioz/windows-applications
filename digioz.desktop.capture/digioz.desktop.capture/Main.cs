@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Imaging;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace digioz.desktop.capture
@@ -148,6 +149,11 @@ namespace digioz.desktop.capture
 
             // minimize current form
             WindowState = FormWindowState.Minimized;
+
+            // Put the current thread to sleep 
+            // to give the application enough time to take
+            // a screenshot when the system memory is low
+            Thread.Sleep(200);
 
             SaveImage(CaptureScreen(), fileName);
 
